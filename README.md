@@ -12,8 +12,8 @@ you can also change the PORT in client.go and server.go to the same one.
 
 ## GoRat features
 [ close ]     => close this connection
-  [ clear ]     => clear terminal
-  [ pwd ]       => find out current directory
+  [ clear ]     => clear terminal \n
+  [ pwd ]       => find out current directory \n
   [ ls ]        => look at some directory
   [ rm ]        => delete a file
   [ rmdir ]     => delete a directory
