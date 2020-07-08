@@ -32,3 +32,14 @@ you can also change the PORT in client.go and server.go to the same one.
 [ crypt ]     => file encryption using AES
 
 [ sysinfo ]   => all system information
+
+## Donate
+
+    monero: 
+    48TmwHGVsqSKgD7giTALoK7P2muKLTJn5R8s5XtKZL1jEr4MJFBAwczVtofuFGvzsT1CzTcFXotwZCDno1UsskqFFZe9wVC
+***
+    bitcoin:
+    18LKUKWAUBAFKzLBdFFkt687vh8rMPhL1u
+***
+    ethereum:
+    0x189a9436b2fbBd0b1C3927E8a398379DBb7105AA
