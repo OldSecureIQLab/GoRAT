@@ -12,13 +12,13 @@ you can also change the PORT in client.go and server.go to the same one.
 
 ## GoRat features
 [ close ]     => close this connection
-[ clear ]     => clear terminal
-[ pwd ]       => find out current directory
-[ ls ]        => look at some directory
-[ rm ]        => delete a file
-[ rmdir ]     => delete a directory
-[ file ]      => download file from victim up to 65 kb
-[ ifconfig ]  => network information
-[ upfile ]    => upload file to victim up to 65 kb
-[ crypt ]     => file encryption using AES
-[ sysinfo ]   => all system information
+  [ clear ]     => clear terminal
+  [ pwd ]       => find out current directory
+  [ ls ]        => look at some directory
+  [ rm ]        => delete a file
+  [ rmdir ]     => delete a directory
+  [ file ]      => download file from victim up to 65 kb
+  [ ifconfig ]  => network information
+  [ upfile ]    => upload file to victim up to 65 kb
+  [ crypt ]     => file encryption using AES
+  [ sysinfo ]   => all system information
