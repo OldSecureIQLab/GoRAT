@@ -9,7 +9,8 @@ The server part can be run on any operating system where Golang is installed.
 You can also use 127.0.0.1 to test PAT on one computer specify the public ip address of the computer where the server.go file will be launched;
 you can also change the PORT in client.go and server.go to the same one.
 3. Install libraries for colours using command:
-go get github.com/fatih/color
+
+  go get github.com/fatih/color
 
   go get github.com/TheTitanrain/w32
 
