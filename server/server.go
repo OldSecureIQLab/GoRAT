@@ -30,10 +30,7 @@ var (
 	Blue    = color.New(color.FgBlue).Add(color.Bold)
 )
 
-//echo %cd%  -  pwd
-
 func main() {
-	command("cls")
 	logo()
 	server, err := net.Listen("tcp", IP+":"+PORT)
 	if err != nil {
@@ -78,14 +75,10 @@ func main() {
 				conn.Read(buffer)
 				arr := strings.Split(string(buffer), "\n")
 				for _, i := range arr {
-					str := strings.Replace(i, " ", "", -1)
-					str = strings.Replace(str, "\n", "", -1)
-					if len(str) > 1 {
-						if strings.Contains(str, ".") {
-							fmt.Println(str)
-						} else {
-							Blue.Println(str)
-						}
+					if strings.Contains(string(i), ".") {
+						fmt.Println(i)
+					} else {
+						Blue.Println(i)
 					}
 				}
 			} else {
@@ -93,14 +86,10 @@ func main() {
 				conn.Read(buffer)
 				arr := strings.Split(string(buffer), "\n")
 				for _, i := range arr {
-					str := strings.Replace(i, " ", "", -1)
-					str = strings.Replace(str, "\n", "", -1)
-					if len(str) > 1 {
-						if strings.Contains(str, ".") {
-							fmt.Println(str)
-						} else {
-							Blue.Println(str)
-						}
+					if strings.Contains(string(i), ".") {
+						fmt.Println(i)
+					} else {
+						Blue.Println(i)
 					}
 				}
 			}
@@ -307,8 +296,8 @@ func logo() {
 	Blue.Print("\\____/  \\____/")
 	Magenta.Println("	\\_/\\_\\\\_/ \\|  \\_/")
 	Green.Print("\t\t\t     v ")
-	Red.Println("1.1")
-	fmt.Print("coded by ")
+	Red.Println("1.2")
+	fmt.Print("coded by")
 	Green.Print(" >> ")
 	Magenta.Println("nikait")
 }
