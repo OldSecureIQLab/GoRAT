@@ -1,5 +1,6 @@
 ## GoRAT 1.2
 ![alt text](prew.jpg)
+
 Hi, this is RAT for the Windows operating system version 7, 8 and 10. 
 The server part can be run on any operating system where Golang is installed.
 
