@@ -141,7 +141,7 @@ func CryptFile(name, path, password string) string {
 	if err != nil {
 		return "error ReadFull"
 	}
-	err = ioutil.WriteFile(path+".hui", gcm.Seal(nonce, nonce, text, nil), 0777)
+	err = ioutil.WriteFile(path+".cry", gcm.Seal(nonce, nonce, text, nil), 0777)
 	if err != nil {
 		return "error Write"
 	}
