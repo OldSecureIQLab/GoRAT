@@ -1,4 +1,4 @@
-## GoRAT 1.2
+## GoRAT 1.2.1
 ![alt text](prew.jpg)
 
 Hi, this is RAT for the Windows operating system version 7, 8 and 10. 
@@ -19,10 +19,6 @@ you can also change the PORT in client.go and server.go to the same one.
  5. If you wish, you can compress the finished exe file with the upx packer and come up with a distribution method, but you yourself will decide.
 
 ## GoRAT features
-[ close ]     => close this connection
-
-[ clear ]     => clear terminal
-  
 [ pwd ]       => find out current directory
 
 [ ls ]        => look at some directory
@@ -37,11 +33,14 @@ you can also change the PORT in client.go and server.go to the same one.
 
 [ upfile ]    => upload file to victim up to 65 kb
 
-[ crypt ]     => file encryption using AES
-
 [ sysinfo ]   => all system information
 
 [ keylogger ] => activate keylogger
+
+[ crypt ]     => encryption using AES 
+you have two options for encryption:
+encryption of one file or directory, if you choose to encrypt a directory,
+all files in it will be encrypted, but internal directories will not be decrypted
 
 ## Donate
 
