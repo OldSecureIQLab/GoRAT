@@ -9,16 +9,21 @@ The server part can be run on any operating system where Golang is installed.
 2. go to the client directory and change the IP parameter to the public IP of the computer where the server file will be launched.
 You can also use 127.0.0.1 to test PAT on one computer specify the public ip address of the computer where the server.go file will be launched;
 you can also change the PORT in client.go and server.go to the same one.
-3. Install libraries for colours using command:
+3. install mingw follow the instructions: http://www.mingw.org/wiki/HOWTO_Install_the_MinGW_GCC_Compiler_Suite
+4. Install libraries for colours using command:
 
    go get github.com/fatih/color
 
    go get github.com/TheTitanrain/w32
+   
+   go get https://github.com/ProtonMail/go-autostart
 
- 4. On the Windows operating system, you need to compile the client.go and kelogger.go file with the command: go build -ldflags -H=windowsgui .
- 5. If you wish, you can compress the finished exe file with the upx packer and come up with a distribution method, but you yourself will decide.
+ 5. On the Windows operating system, you need to compile the client.go and kelogger.go file with the command: go build -ldflags -H=windowsgui .
+ 6. If you wish, you can compress the finished exe file with the upx packer and come up with a distribution method, but you yourself will decide.
 
 ## GoRAT features
+[Autorun]
+
 [ pwd ]       => find out current directory
 
 [ ls ]        => look at some directory
