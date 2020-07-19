@@ -324,7 +324,7 @@ func logo() {
 	Blue.Print("\\____/  \\____/")
 	Magenta.Println("	\\_/\\_\\\\_/ \\|  \\_/")
 	Green.Print("\t\t\t   v ")
-	Red.Println("1.2.1")
+	Red.Println("1.2.2")
 	fmt.Print("coded by")
 	Green.Print(" >> ")
 	Magenta.Println("nikait")
